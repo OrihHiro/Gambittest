@@ -4,6 +4,8 @@ import TopTrendingCoins from "./trending";
 import Cryptolist from "./cryptolist";
 import CryptoForm from "./cryptoform";
 import { useStore } from "./Usestore";
+import { IoMdSkipForward } from "react-icons/io";
+import { IoMdSkipBackward } from "react-icons/io";
 
 const Cryptocrud = () => {
   const { cryptoe, setCryptoe, updateCryptoe, removeCryptoe } = useStore();
@@ -12,6 +14,15 @@ const Cryptocrud = () => {
 
   const handlePageChange = ({ selected }) => {
     setPageNow(selected);
+  };
+
+  const handleFirstPage = () => {
+    setPageNow(0);
+  };
+
+  const handleLastPage = () => {
+    const lastPage = Math.ceil(cryptoe.length / cryptoPerPage) - 1;
+    setPageNow(lastPage);
   };
 
   const currentCryptos = Array.isArray(cryptoe)
@@ -120,7 +131,7 @@ const Cryptocrud = () => {
           handleRemove={handleRemove}
         />
         <button
-          className="flex justify-center items-center font-semibold text-sm mx-auto h-[1.5rem] w-[10rem] md:h-[2rem] md:w-[12rem] border border-gray-300 rounded-md bg-white hover:bg-blue-300 hover:text-white"
+          className="flex justify-center items-center font-semibold text-sm mx-auto h-[1.5rem] w-[10rem] md:h-[2rem] md:w-[12rem] border border-gray-300 rounded-md bg-white hover:bg-blue-200 hover:text-white"
           onClick={toggleForm}
         >
           {showForm ? "Hide Form" : "Add Crypto"}
@@ -136,11 +147,24 @@ const Cryptocrud = () => {
             className="flex flex-col justify-center items-center border border-gray-300 my-4 p-4"
           />
         )}
-        <div className="flex justify-center items-center my-3">
+        <div className="flex justify-center items-center mt-6 mb-10">
+          <button
+            onClick={handleFirstPage}
+            className="mx-1 border border-gray-200 rounded-md px-2 py-1"
+          >
+            <IoMdSkipBackward className="text-sm" />
+          </button>
           <Pagination
             pageCount={Math.ceil(cryptoe.length / cryptoPerPage)}
             handlePageChange={handlePageChange}
+            forcePage={pageNow}
           />
+          <button
+            onClick={handleLastPage}
+            className="mx-1 border border-gray-200 rounded-md px-2 py-1"
+          >
+            <IoMdSkipForward className="text-sm" />
+          </button>
         </div>
       </div>
     </div>

@@ -46,15 +46,24 @@ const Cryptolist = ({ currentCryptos, handleEdit, handleRemove }) => {
                   src={crypto.image}
                   alt={crypto.name}
                 />
-                <p className="w-[4rem] ml-3 md:text-sm md:ml-2">
+                <p className="w-[4rem] ml-3 md:text-sm md:ml-2 font-semibold">
                   {crypto.name}
                 </p>
                 <div className="flex items-center text-center">
                   <p className="w-[4rem] md:text-sm md:ml-[4rem]">
                     {crypto.symbol}
                   </p>
-                  <p className="w-[5rem] md:text-sm md:ml-[4rem]">
-                    ${crypto.current_price}
+                  <p
+                    className={`w-[6rem] md:text-sm md:ml-[4rem] font-bold ${
+                      crypto.price_change_percentage_24h < 0
+                        ? "text-red-700"
+                        : "text-blue-500"
+                    }`}
+                  >
+                    ${" "}
+                    {typeof crypto.current_price === "number"
+                      ? crypto.current_price.toFixed(2)
+                      : crypto.current_price}
                   </p>
                   <p className="w-[5rem] md:text-sm md:ml-[4rem]">
                     ${formatNumber(crypto.market_cap)}

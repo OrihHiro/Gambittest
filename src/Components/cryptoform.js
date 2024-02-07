@@ -3,14 +3,13 @@ import React from "react";
 const CryptoForm = ({
   cryptoData,
   handleInputChange,
-  handleImageUpload,
   addCrypto,
   editCrypto,
   onClose,
 }) => {
   return (
     <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-80 flex justify-center items-center z-1000">
-      <div className="bg-white p-10 w-[30rem] h-auto rounded-lg shadow-md">
+      <div className="bg-white p-10 w-[30rem] h-auto rounded-lg border border-blue-500 shadow-md">
         <h3 className="flex justify-center items-center text-2xl font-semibold mb-[1rem]">
           Add or Edit Crypto
         </h3>

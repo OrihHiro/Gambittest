@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Header from "./Components/header";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -9,6 +9,8 @@ import { useStore } from "./Components/Usestore";
 function App() {
   const cryptoe = useStore((state) => state.cryptoe);
   const setCryptoe = useStore((state) => state.setCryptoe);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -17,13 +19,31 @@ function App() {
           "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&locale=en"
         );
         setCryptoe(response.data);
+        setLoading(false);
       } catch (error) {
-        console.log(error);
+        setError(error);
+        setLoading(false);
       }
     };
     fetchData();
   }, [setCryptoe]);
 
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen text-lg font-bold">
+        Loading...
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex justify-center items-center h-screen text-lg font-bold">
+        Error: Network Error. <br />
+        Please try again later.
+      </div>
+    );
+  }
   return (
     <Router>
       <div>

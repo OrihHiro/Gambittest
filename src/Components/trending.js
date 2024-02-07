@@ -2,26 +2,20 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const TopTrendingCoins = ({ cryptoe }) => {
-  // Function to get the top 3 trending coins
   const getTopTrendingCoins = () => {
-    // Sort the cryptoe array based on a certain criteria, e.g., price change percentage
     const sortedCryptoe = cryptoe.slice().sort((a, b) => {
-      // Assuming price_change_percentage_24h is the field to consider
       return b.price_change_percentage_24h - a.price_change_percentage_24h;
     });
-
-    // Get the top 3 coins
     const topTrendingCoins = sortedCryptoe.slice(0, 4);
-
     return topTrendingCoins;
   };
 
   const topTrendingCoins = getTopTrendingCoins();
 
   return (
-    <div>
-      <h2 className="flex justify-center text-2xl font-bold mb-3">
-        Top 4 Trending Coins This Week
+    <div className="my-3">
+      <h2 className="flex justify-start text-2xl font-semibold mb-3">
+        Top 4 Trending Coins Today
       </h2>
       <div className="flex justify-center w-full items-center mb-4">
         <div className="flex justify-between items-center w-full">
@@ -30,7 +24,7 @@ const TopTrendingCoins = ({ cryptoe }) => {
               <Link to={`/cryptodetails/${coin.id}`} key={index}>
                 <div
                   key={index}
-                  className="flex-1 flex justify-center items-center border border-gray-300 rounded-md p-3"
+                  className="flex-1 flex justify-center items-center border border-gray-300 ring ring-blue-50 transition-transform duration-500 hover:scale-105 rounded-md p-3"
                 >
                   <div className="flex flex-col justify-center items-center">
                     <img
@@ -42,12 +36,24 @@ const TopTrendingCoins = ({ cryptoe }) => {
                       <p className="text-xs md:text-sm font-semibold my-2 mx-1">
                         {coin.symbol}
                       </p>
-                      <p className="text-xs md:text-sm font-sm my-2 mx-1">
-                        {coin.price_change_percentage_24h}
+                      <p
+                        className={`text-xs md:text-sm my-2 mx-1 ${
+                          coin.price_change_percentage_24h < 0
+                            ? "text-red-700"
+                            : "text-blue-500"
+                        }`}
+                      >
+                        {coin.price_percentage_24h < 0 ? "-" : "+"}
+                        {coin.price_change_percentage_24h !== undefined &&
+                          coin.price_change_percentage_24h.toFixed(2)}
+                        %
                       </p>
                     </div>
-                    <p className="text-sm md:text-base">
-                      ${coin.current_price}
+                    <p className="text-sm md:text-base font-semibold">
+                      $
+                      {typeof coin.current_price === "number"
+                        ? coin.current_price.toFixed(2)
+                        : coin.current_price}
                     </p>
                   </div>
                 </div>

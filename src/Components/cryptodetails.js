@@ -5,15 +5,10 @@ import { useStore } from "./Usestore";
 const Cryptodetails = () => {
   const { id } = useParams();
   const cryptoe = useStore((state) => state.cryptoe);
-  console.log("id from URL parameters:", id, typeof id);
-  console.log(
-    "Cryptoe array:",
-    cryptoe.map((crypto) => crypto.id)
-  );
+
   const selectedCrypto = cryptoe.find(
     (crypto) => String(crypto.id) === String(id)
   );
-  console.log("Selected Crypto:", selectedCrypto);
 
   const formatNumber = (number) => {
     console.log("Number:", number);
@@ -53,7 +48,13 @@ const Cryptodetails = () => {
                   {selectedCrypto.name} {selectedCrypto.symbol}
                 </p>
               </div>
-              <p className="text-[1.3rem] mx-5 font-extrabold">
+              <p
+                className={`text-[1.3rem] mx-5 font-extrabold ${
+                  selectedCrypto.price_change_percentage_24h < 0
+                    ? "text-red-700"
+                    : "text-blue-500"
+                }`}
+              >
                 $ {selectedCrypto.current_price}
               </p>
             </div>
@@ -63,7 +64,15 @@ const Cryptodetails = () => {
               <div className="">
                 <div className="flex items-center border-b text-sm md:text-base border-gray-300 justify-between my-3 md:my-5 px-1">
                   <h4 className="font-bold">24H %:</h4>
-                  <p>{selectedCrypto.price_change_percentage_24h}%</p>
+                  <p
+                    className={`font-semibold ${
+                      selectedCrypto.price_change_percentage_24h < 0
+                        ? "text-red-700"
+                        : "text-blue-500"
+                    }`}
+                  >
+                    {selectedCrypto.price_change_percentage_24h.toFixed(2)}%
+                  </p>
                 </div>
                 <div className="flex items-center  border-b text-sm md:text-base  border-gray-300 justify-between my-3 md:my-5 px-1">
                   <h4 className="font-bold">Market Cap:</h4>
@@ -92,7 +101,9 @@ const Cryptodetails = () => {
           </div>
         </div>
       ) : (
-        <div>Crypto Not Found</div>
+        <div className="flex justify-center items-center text-3xl">
+          Crypto Not Found
+        </div>
       )}
     </div>
   );

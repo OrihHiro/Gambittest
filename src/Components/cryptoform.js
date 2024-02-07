@@ -25,16 +25,6 @@ const CryptoForm = ({
               onChange={handleInputChange}
             />
           </label>
-          {/* <label className="flex justify-center items-center">
-            <div className="w-[6rem] font-bold">Image:</div>
-            <input
-              className="w-full p-2 mt-1 border border-gray-300 rounded-md"
-              type="file"
-              accept="image/*"
-              name="image"
-              onChange={handleImageUpload}
-            />
-          </label> */}
           <label className="flex justify-center items-center">
             <div className="w-[6rem] font-bold">Symbol:</div>
             <input
@@ -55,16 +45,6 @@ const CryptoForm = ({
               onChange={handleInputChange}
             />
           </label>
-          {/* <label className="flex justify-center items-center">
-            <div className="w-[6rem] font-bold">Market Cap:</div>
-            <input
-              className="w-full p-2 mt-1 border border-gray-300 rounded-md"
-              type="text"
-              name="market_cap"
-              value={cryptoData.market_cap}
-              onChange={handleInputChange}
-            />
-          </label> */}
         </div>
         <div className="flex justify-center items-center gap-[0.5rem] mt-[2rem] ">
           <button

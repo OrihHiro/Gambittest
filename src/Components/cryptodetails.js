@@ -18,7 +18,7 @@ const Cryptodetails = () => {
   const formatNumber = (number) => {
     console.log("Number:", number);
     if (typeof number !== "number" || isNaN(number)) {
-      return "N/A"; // or any default value you prefer
+      return "N/A";
     }
 
     if (number >= 1e9) {

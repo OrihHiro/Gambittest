@@ -4,9 +4,9 @@ import { useStore } from "./Usestore";
 
 const Cryptodetails = () => {
   const { id } = useParams();
-  const cryptoe = useStore((state) => state.cryptoe);
+  const crypto = useStore((state) => state.crypto);
 
-  const selectedCrypto = cryptoe.find(
+  const selectedCrypto = crypto.find(
     (crypto) => String(crypto.id) === String(id)
   );
 

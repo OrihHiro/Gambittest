@@ -7,8 +7,8 @@ import Cryptocrud from "./Components/cryptocrud";
 import { useStore } from "./Components/Usestore";
 
 function App() {
-  const cryptoe = useStore((state) => state.cryptoe);
-  const setCryptoe = useStore((state) => state.setCryptoe);
+  const crypto = useStore((state) => state.crypto);
+  const setCrypto = useStore((state) => state.setCrypto);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -18,7 +18,7 @@ function App() {
         const response = await axios.get(
           "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&locale=en"
         );
-        setCryptoe(response.data);
+        setCrypto(response.data);
         setLoading(false);
       } catch (error) {
         setError(error);
@@ -26,7 +26,7 @@ function App() {
       }
     };
     fetchData();
-  }, [setCryptoe]);
+  }, [setCrypto]);
 
   if (loading) {
     return (
@@ -51,11 +51,11 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={<Cryptocrud cryptoe={cryptoe} setCryptoe={setCryptoe} />}
+            element={<Cryptocrud crypto={crypto} setCrypto={setCrypto} />}
           />
           <Route
             path="/cryptodetails/:id"
-            element={<Cryptodetails cryptoe={cryptoe} />}
+            element={<Cryptodetails crypto={crypto} />}
           />
         </Routes>
       </div>

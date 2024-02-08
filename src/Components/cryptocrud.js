@@ -4,32 +4,10 @@ import TopTrendingCoins from "./trending";
 import Cryptolist from "./cryptolist";
 import CryptoForm from "./cryptoform";
 import { useStore } from "./Usestore";
-import { IoMdSkipForward } from "react-icons/io";
-import { IoMdSkipBackward } from "react-icons/io";
+import { IoMdSkipForward, IoMdSkipBackward } from "react-icons/io";
 
 const Cryptocrud = () => {
-  const { cryptoe, setCryptoe, updateCryptoe, removeCryptoe } = useStore();
-  const cryptoPerPage = 5;
-  const [pageNow, setPageNow] = useState(0);
-
-  const handlePageChange = ({ selected }) => {
-    setPageNow(selected);
-  };
-
-  const handleFirstPage = () => {
-    setPageNow(0);
-  };
-
-  const handleLastPage = () => {
-    const lastPage = Math.ceil(cryptoe.length / cryptoPerPage) - 1;
-    setPageNow(lastPage);
-  };
-
-  const currentCryptos = Array.isArray(cryptoe)
-    ? cryptoe.slice(pageNow * cryptoPerPage, (pageNow + 1) * cryptoPerPage)
-    : [];
-
-  const [cryptoData, setCryptoData] = useState({
+  const InCryptoData = () => ({
     name: "",
     symbol: "",
     image: "",
@@ -42,8 +20,30 @@ const Cryptocrud = () => {
     low_24h: 0,
     ath: 0,
   });
+
+  const { crypto, setCrypto, updateCrypto, removeCrypto } = useStore();
+  const cryptoPerPage = 5;
+  const [pageNow, setPageNow] = useState(0);
+  const [cryptoData, setCryptoData] = useState(InCryptoData());
   const [editCrypto, setEditCrypto] = useState(null);
   const [showForm, setShowForm] = useState(false);
+
+  const handlePageChange = ({ selected }) => {
+    setPageNow(selected);
+  };
+
+  const handleFirstPage = () => {
+    setPageNow(0);
+  };
+
+  const handleLastPage = () => {
+    const lastPage = Math.ceil(crypto.length / cryptoPerPage) - 1;
+    setPageNow(lastPage);
+  };
+
+  const currentCryptos = Array.isArray(crypto)
+    ? crypto.slice(pageNow * cryptoPerPage, (pageNow + 1) * cryptoPerPage)
+    : [];
 
   const toggleForm = () => {
     setShowForm(!showForm);
@@ -52,47 +52,26 @@ const Cryptocrud = () => {
   const handleCloseForm = () => {
     setShowForm(false);
     setEditCrypto(null);
+    setCryptoData(InCryptoData());
   };
 
   const addCrypto = () => {
     if (editCrypto) {
-      updateCryptoe(editCrypto.id, cryptoData);
+      updateCrypto(editCrypto.id, cryptoData);
 
       setEditCrypto(null);
     } else {
       const newCrypto = {
-        id: `newCrypto_${Date.now()}`,
-        name: cryptoData.name,
-        symbol: cryptoData.symbol,
-        image: cryptoData.image,
-        current_price: cryptoData.current_price,
-        market_cap: cryptoData.market_cap,
-        market_cap_rank: cryptoData.market_cap_rank,
-        price_change_percentage_24h: cryptoData.price_change_percentage_24h,
-        circulating_supply: cryptoData.circulating_supply,
-        high_24h: cryptoData.high_24h,
-        low_24h: cryptoData.low_24h,
-        ath: cryptoData.ath,
+        ...cryptoData,
       };
-      setCryptoe([...cryptoe, newCrypto]);
+      setCrypto([...crypto, newCrypto]);
     }
     setShowForm(false);
-    setCryptoData({
-      name: "",
-      symbol: "",
-      current_price: 0,
-      market_cap: 0,
-      market_cap_rank: 0,
-      price_change_percentage_24h: 0,
-      circulating_supply: 0,
-      high_24h: 0,
-      low_24h: 0,
-      ath: 0,
-    });
+    setCryptoData(InCryptoData());
   };
 
   const handleEdit = (id) => {
-    const cryptoToEdit = cryptoe.find((crypto) => crypto.id === id);
+    const cryptoToEdit = crypto.find((crypto) => crypto.id === id);
     if (cryptoToEdit) {
       setEditCrypto(cryptoToEdit);
       setCryptoData({
@@ -110,7 +89,7 @@ const Cryptocrud = () => {
       "Are you sure you want to delete this crypto?"
     );
     if (confirmation) {
-      removeCryptoe(id);
+      removeCrypto(id);
     }
   };
 
@@ -124,7 +103,7 @@ const Cryptocrud = () => {
   return (
     <div className="flex justify-center lg:container lg:mx-auto">
       <div className="w-full px-2 md:w-[50rem]">
-        <TopTrendingCoins cryptoe={cryptoe} />
+        <TopTrendingCoins crypto={crypto} />
         <Cryptolist
           currentCryptos={currentCryptos}
           handleEdit={handleEdit}
@@ -155,7 +134,7 @@ const Cryptocrud = () => {
             <IoMdSkipBackward className="text-sm" />
           </button>
           <Pagination
-            pageCount={Math.ceil(cryptoe.length / cryptoPerPage)}
+            pageCount={Math.ceil(crypto.length / cryptoPerPage)}
             handlePageChange={handlePageChange}
             forcePage={pageNow}
           />

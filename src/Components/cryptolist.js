@@ -23,11 +23,11 @@ const Cryptolist = ({ currentCryptos, handleEdit, handleRemove }) => {
     <div>
       <div className="flex justify-between items-center text-xs md:text-lg font-bold h-12 md:h-16 border-gray-300 bg-blue-200 rounded-t-lg">
         <div className="flex justify-center items-center">
-          <h3 className="ml-2 text-xs md:text-lg">Rank</h3>
-          <h3 className="ml-8 text-xs md:text-lg">Coin</h3>
-          <h3 className="ml-[3rem] text-xs md:text-lg md:ml-[7rem]">Symbol</h3>
+          <h3 className="ml-3 text-xs md:text-lg">Rank</h3>
+          <h3 className="ml-10 text-xs md:text-lg">Coin</h3>
+          <h3 className="ml-[4rem] text-xs md:text-lg md:ml-[7rem]">Symbol</h3>
           <h3 className="ml-[2rem] text-xs md:text-lg md:ml-[5rem]">Price</h3>
-          <h3 className="ml-[2rem] text-xs md:text-lg md:ml-[5rem]">
+          <h3 className="ml-[3rem] text-xs md:text-lg md:ml-[5rem]">
             Market Cap
           </h3>
         </div>

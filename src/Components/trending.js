@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const TopTrendingCoins = ({ cryptoe }) => {
+const TopTrendingCoins = ({ crypto }) => {
   const getTopTrendingCoins = () => {
-    const sortedCryptoe = cryptoe.slice().sort((a, b) => {
+    const sortedCrypto = crypto.slice().sort((a, b) => {
       return b.price_change_percentage_24h - a.price_change_percentage_24h;
     });
-    const topTrendingCoins = sortedCryptoe.slice(0, 4);
+    const topTrendingCoins = sortedCrypto.slice(0, 4);
     return topTrendingCoins;
   };
 

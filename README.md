@@ -1,70 +1,46 @@
-# Getting Started with Create React App
+# <h1>Cryptocurrency Tracker (CryptoDitto)</h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a simple web application that provides users with real-time tracking of the Top 100 Cryptocurrencies. It allows users to view a list of cryptocurrencies, their details, edit existing entries, delete entries, and add new cryptocurrencies.
 
-## Available Scripts
+# <h1>Features</h1>
+- Top 100 Cryptocurrencies: The main tab showcases the top 100 cryptocurrencies along with their current prices, market cap etc., providing users an overview of the cryptocurrency market.
 
-In the project directory, you can run:
+- Trending Coins: This applicaiton also displays the 24H trending coins, helping users to stay updated with the latest trends.  
 
-### `npm start`
+- Detailed Modal: Users can click on the Cryptocurrency in the main tab to view its details in a different tab. The modal displays addtional information such as the coin, symbol, prices, 24H High/Low, All Time High(ATH) data etc.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- POST/PUT/DELETE: Users can also add new cryptocurrencies to the list and edit existing or newly added cryptocurrencies to update their information. Additionally, they can delete cryptocurrencies from the list.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# <h1>Technologies</h1>
+- React.js, Tailwind CSS, Zustand, Axios, React-Router-Dom.
+- CoinGecko API
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# <h1>Components</h1>
+- Header: The Header component provides brand name and headlines.
 
-### `npm run build`
+- Cryptolist: Renders a list of cryptocurrencies with brief details. It provides options to edit or delete each cryptocurrency entry.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Cryptoform: A reusable form for adding or editing cryptocurrency details. It allows users to input data such as name, symbol, current price.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- useStore: Provides a custom hook for managing application state using Zustand. It includes functions for setting, updating, and removing cryptocurrency data.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Pagination: Helps users move between different pages of content.
 
-### `npm run eject`
+- TopTrendingCoins: Provides the top 4 trending cryptocurrencies of the day, enabling users to explore more details with a single click.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Cryptocrud: Manage cryptocurrency list, allowing users to add, edit, and remove cryptocurrencies, with pagination for easy navigation.
+  
+# <h1>Screenshots</h1>
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<img width="1470" alt="Screenshot 2024-02-08 at 10 39 01 AM" src="https://github.com/OrihHiro/Gambittest/assets/147576847/f3b568f6-68e6-4d35-b2a7-d8aa1030c59b">
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+<img width="1328" alt="Screenshot 2024-02-08 at 10 39 19 AM" src="https://github.com/OrihHiro/Gambittest/assets/147576847/bb49766c-f5dc-4a80-a182-6c6f029d03c7">
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+<img width="1470" alt="Screenshot 2024-02-08 at 10 40 31 AM" src="https://github.com/OrihHiro/Gambittest/assets/147576847/7bd98eee-16b3-4d14-948e-e2aa23929638">
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# <h1>Deployment</h1>
+This section has moved here: https://cryptoditto.netlify.app/
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

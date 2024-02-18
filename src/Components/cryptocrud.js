@@ -121,7 +121,7 @@ const Cryptocrud = () => {
             handleInputChange={handleInputChange}
             addCrypto={addCrypto}
             editCrypto={editCrypto}
-            setEditCrypto={setEditCrypto}
+            // setEditCrypto={setEditCrypto}
             onClose={handleCloseForm}
             className="flex flex-col justify-center items-center border border-gray-300 my-4 p-4"
           />

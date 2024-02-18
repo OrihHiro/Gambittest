@@ -11,7 +11,6 @@ const Cryptodetails = () => {
   );
 
   const formatNumber = (number) => {
-    console.log("Number:", number);
     if (typeof number !== "number" || isNaN(number)) {
       return "N/A";
     }
@@ -26,8 +25,6 @@ const Cryptodetails = () => {
       return number.toString();
     }
   };
-
-  console.log("Selected Crypto:", selectedCrypto);
 
   return (
     <div className="p-0 m-0">
